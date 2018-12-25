@@ -18,7 +18,7 @@ lockingPinHeight = 2.5 ;
 
 indexSpringHeight = 3; 
 
-slidingGuideDiameter = 1.6 ;
+slidingGuideDiameter = 1 ;
 
 
 
