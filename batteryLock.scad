@@ -17,6 +17,8 @@ lockingPinHeight = 3 ;
 
 indexSpringHeight = 3; 
 
+slidingGuideDiameter = 1.6 ;
+
 module centralPlate () {
   module plate() {
     cube ([centralPlateLength,centralPlateWidth,1.4]);
@@ -91,6 +93,14 @@ module rightIndexSpring () {
   }
 }
 
+module slidingGuides() {
+  for (x=[-1:2:1],y=[-1:2:1]){
+  translate ([x*(centralPlateLength/2-slidingGuideDiameter),y*yBarLength/2,0]) {
+  cylinder (d=slidingGuideDiameter);
+   }
+  }
+}
+
 module batteryLock () {
   union () {
     centralPlate ();
@@ -98,7 +108,8 @@ module batteryLock () {
     rearBar() ;
     lockingPin ();
     leftIndexSpring() ;
-    rightIndexSpring() ; 
+    rightIndexSpring() ;
+    slidingGuides();
   }
 }
 
