@@ -11,6 +11,8 @@ lockingPinLength = 3;
 lockingPinWidth = 4 ;
 lockingPinHeight = 3 ;
 
+indexSpringHeight = 3; 
+
 module centralPlate () {
   module crossHole () {
     union () {
@@ -55,9 +57,35 @@ module rearBar () {
 }
 
 module lockingPin () {
-translate ([centralPlateLength/2-yBarWidth,-lockingPinWidth,0]) {
-  cube ([lockingPinLength+1,lockingPinWidth,lockingPinHeight]);
+  translate ([centralPlateLength/2-yBarWidth,-lockingPinWidth,0]) {
+    cube ([lockingPinLength+1,lockingPinWidth,lockingPinHeight]);
+  }
 }
+
+module indexSpring () {
+  translate ([-centralPlateLength/2,0,0]) {
+    union () {
+    cube ([centralPlateLength,.7,indexSpringHeight]);
+  translate ([centralPlateLength/2,0,2]) {
+  cylinder (d=2,h=1);
+}    
+    }
+  }
+}
+
+module leftIndexSpring () {
+  translate ([0,-yBarLength/2,0]) {
+    indexSpring ();
+  }
+}
+
+module rightIndexSpring () {
+
+  translate ([0,yBarLength/2,0]) {
+  mirror ([0,1,0]){
+    indexSpring ();
+    }
+  }
 }
 
 module batteryLock () {
@@ -66,6 +94,8 @@ module batteryLock () {
     frontBar();
     rearBar() ;
     lockingPin ();
+    leftIndexSpring() ;
+    rightIndexSpring() ; 
   }
 }
 
