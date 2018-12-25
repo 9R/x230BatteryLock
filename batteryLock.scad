@@ -12,7 +12,7 @@ crossHoleClipGapLength= 3.5 ;
 yBarWidth = 1 ;
 yBarLength = 12.5 ;
 
-lockingPinLength = 3;
+lockingPinLength = 3.6;
 lockingPinWidth = 4.5 ;
 lockingPinHeight = 3 ;
 
@@ -70,7 +70,7 @@ module rearBar () {
 }
 
 module lockingPin () {
-  translate ([centralPlateLength/2-yBarWidth,-lockingPinWidth,0]) {
+  translate ([centralPlateLength/2-yBarWidth,-lockingPinWidth-0.5,0]) {
     cube ([lockingPinLength+1,lockingPinWidth,lockingPinHeight]);
   }
 }
@@ -80,7 +80,9 @@ module indexSpring () {
     union () {
       cube ([centralPlateLength,.7,indexSpringHeight]);
       translate ([centralPlateLength/2,0,2]) {
+      scale ([1.1,0.9,1]) {
         cylinder (d=2,h=1);
+        }
       }    
     }
   }
@@ -93,7 +95,6 @@ module leftIndexSpring () {
 }
 
 module rightIndexSpring () {
-
   translate ([0,yBarLength/2,0]) {
     mirror ([0,1,0]){
       indexSpring ();
@@ -104,7 +105,9 @@ module rightIndexSpring () {
 module slidingGuides() {
   for (x=[-1:2:1],y=[-1:2:1]){
     translate ([x*(centralPlateLength/2-slidingGuideDiameter),y*yBarLength/2,0]) {
+      scale ([1.3,0.6,1]) {
       cylinder (d=slidingGuideDiameter);
+      }
     }
   }
 }
