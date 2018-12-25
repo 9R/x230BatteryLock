@@ -1,29 +1,33 @@
 $fa=1;
-$fs=0.5;
+$fs=0.2;
 
 centralPlateLength = 12.8;
 centralPlateWidth = 8.7;
+
+crossHoleLength= 7.5;
+crossHoleWidth=  5.5;
+crossHoleClipGaps= 3.5 ;
 
 yBarWidth = 1 ;
 yBarLength = 11.5 ;
 
 lockingPinLength = 3;
-lockingPinWidth = 4 ;
+lockingPinWidth = 4.5 ;
 lockingPinHeight = 3 ;
 
 indexSpringHeight = 3; 
 
 module centralPlate () {
-  module crossHole () {
-    union () {
-      cube ([7.5,3.5,4]) ;
-      translate ([1.,-1,0]) {
-        cube ([3,5.5,4]) ;
-      }
-    }
-  }
   module plate() {
     cube ([centralPlateLength,centralPlateWidth,1.4]);
+  }
+  module crossHole () {
+    union () {
+      cube ([crossHoleLength,3.5,4]) ;
+      translate ([1.,-1,0]) {
+        cube ([crossHoleClipGaps,crossHoleWidth,4]) ;
+      }
+    }
   }
   // combine
   translate ([-centralPlateLength/2,-centralPlateWidth/2,0]) {
@@ -38,7 +42,6 @@ module centralPlate () {
     }
   }
 }
-
 
 module yBar () {
   translate ([0,-yBarLength/2,0]) {
