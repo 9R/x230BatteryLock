@@ -7,6 +7,10 @@ centralPlateWidth = 8.7;
 yBarWidth = 1 ;
 yBarLength = 11.5 ;
 
+lockingPinLength = 3;
+lockingPinWidth = 4 ;
+lockingPinHeight = 3 ;
+
 module centralPlate () {
   module crossHole () {
     union () {
@@ -51,6 +55,9 @@ module rearBar () {
 }
 
 module lockingPin () {
+translate ([centralPlateLength/2-yBarWidth,-lockingPinWidth,0]) {
+  cube ([lockingPinLength+1,lockingPinWidth,lockingPinHeight]);
+}
 }
 
 module batteryLock () {
