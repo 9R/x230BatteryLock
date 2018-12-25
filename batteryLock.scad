@@ -30,14 +30,14 @@ module centralPlate () {
   module crossHole() {
     union () {
       translate ([-crossHoleLength/2,-crossHoleWidth/2,0]){
-      cube ([crossHoleLength,crossHoleWidth,4]) ;
+        cube ([crossHoleLength,crossHoleWidth,4]) ;
       }
       translate ([-crossHoleClipGapLength/2,-crossHoleWidth/2-crossHoleClipGapDepth]) {
         cube ([crossHoleClipGapLength,crossHoleWidth+2*crossHoleClipGapDepth,4]) ;
       }
     }
   }
-  
+
   // combine
   translate ([-centralPlateLength/2,-centralPlateWidth/2,0]) {
     difference () {
@@ -47,7 +47,7 @@ module centralPlate () {
       union () {
         translate ([centralPlateLength/2+0.7,centralPlateWidth/2+0.4,-1]) {
           crossHole() ;
-      }
+        }
       }
     }
   }
@@ -78,10 +78,10 @@ module lockingPin () {
 module indexSpring () {
   translate ([-centralPlateLength/2,0,0]) {
     union () {
-    cube ([centralPlateLength,.7,indexSpringHeight]);
-  translate ([centralPlateLength/2,0,2]) {
-  cylinder (d=2,h=1);
-}    
+      cube ([centralPlateLength,.7,indexSpringHeight]);
+      translate ([centralPlateLength/2,0,2]) {
+        cylinder (d=2,h=1);
+      }    
     }
   }
 }
@@ -95,17 +95,17 @@ module leftIndexSpring () {
 module rightIndexSpring () {
 
   translate ([0,yBarLength/2,0]) {
-  mirror ([0,1,0]){
-    indexSpring ();
+    mirror ([0,1,0]){
+      indexSpring ();
     }
   }
 }
 
 module slidingGuides() {
   for (x=[-1:2:1],y=[-1:2:1]){
-  translate ([x*(centralPlateLength/2-slidingGuideDiameter),y*yBarLength/2,0]) {
-  cylinder (d=slidingGuideDiameter);
-   }
+    translate ([x*(centralPlateLength/2-slidingGuideDiameter),y*yBarLength/2,0]) {
+      cylinder (d=slidingGuideDiameter);
+    }
   }
 }
 
