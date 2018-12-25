@@ -5,11 +5,12 @@ centralPlateLength = 12.8;
 centralPlateWidth = 8.7;
 
 crossHoleLength= 7.5;
-crossHoleWidth=  5.5;
-crossHoleClipGaps= 3.5 ;
+crossHoleWidth=  3.5;
+crossHoleClipGapDepth=  1.3 ;
+crossHoleClipGapLength= 3.5 ;
 
 yBarWidth = 1 ;
-yBarLength = 11.5 ;
+yBarLength = 12.5 ;
 
 lockingPinLength = 3;
 lockingPinWidth = 4.5 ;
@@ -19,18 +20,24 @@ indexSpringHeight = 3;
 
 slidingGuideDiameter = 1.6 ;
 
+
+
 module centralPlate () {
   module plate() {
     cube ([centralPlateLength,centralPlateWidth,1.4]);
   }
-  module crossHole () {
+
+  module crossHole() {
     union () {
-      cube ([crossHoleLength,3.5,4]) ;
-      translate ([1.,-1,0]) {
-        cube ([crossHoleClipGaps,crossHoleWidth,4]) ;
+      translate ([-crossHoleLength/2,-crossHoleWidth/2,0]){
+      cube ([crossHoleLength,crossHoleWidth,4]) ;
+      }
+      translate ([-crossHoleClipGapLength/2,-crossHoleWidth/2-crossHoleClipGapDepth]) {
+        cube ([crossHoleClipGapLength,crossHoleWidth+2*crossHoleClipGapDepth,4]) ;
       }
     }
   }
+  
   // combine
   translate ([-centralPlateLength/2,-centralPlateWidth/2,0]) {
     difference () {
@@ -38,8 +45,9 @@ module centralPlate () {
         plate () ;
       }
       union () {
-        translate ([3.3,3,-1])
-          crossHole ();
+        translate ([centralPlateLength/2+0.7,centralPlateWidth/2+0.4,-1]) {
+          crossHole() ;
+      }
       }
     }
   }
@@ -114,3 +122,4 @@ module batteryLock () {
 }
 
 batteryLock () ;
+
