@@ -14,7 +14,7 @@ yBarLength = 12.5 ;
 
 lockingPinLength = 3.6;
 lockingPinWidth = 4.5 ;
-lockingPinHeight = 3 ;
+lockingPinHeight = 2.5 ;
 
 indexSpringHeight = 3; 
 
@@ -32,7 +32,7 @@ module centralPlate () {
       translate ([-crossHoleLength/2,-crossHoleWidth/2,0]){
         cube ([crossHoleLength,crossHoleWidth,4]) ;
       }
-      translate ([-crossHoleClipGapLength/2,-crossHoleWidth/2-crossHoleClipGapDepth]) {
+      translate ([-crossHoleClipGapLength/2-1,-crossHoleWidth/2-crossHoleClipGapDepth]) {
         cube ([crossHoleClipGapLength,crossHoleWidth+2*crossHoleClipGapDepth,4]) ;
       }
     }
@@ -78,7 +78,16 @@ module lockingPin () {
 module indexSpring () {
   translate ([-centralPlateLength/2,0,0]) {
     union () {
+      difference () {
       cube ([centralPlateLength,.7,indexSpringHeight]);
+      translate ([centralPlateLength/2,0,-1]) {
+      rotate ([90,0,0]) {
+        scale ([1.25,0.9,1]) {
+      cylinder (d=centralPlateLength/2, h= indexSpringHeight,center=true) ;
+  }
+      }
+      }
+      }
       translate ([centralPlateLength/2,0,2]) {
       scale ([1.1,0.9,1]) {
         cylinder (d=2,h=1);
