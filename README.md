@@ -5,6 +5,6 @@ A OpenSCAD model of a small plastic piece that locks the battery pack in place o
 
 Can be printed on 3D-printer as replacement, if original breakes
 
-![Locking pin](https://url.to/image)
+![Locking pin](https://github.com/9R/x230BatteryLock/blob/master/img/batterylock.jpg)
 
-[Thinkgyverse link](https://url.to/thingiverse)
+[Thinkgyverse link](https://www.thingiverse.com/thing:3314531)
