@@ -14,7 +14,7 @@ yBarLength = 12.5 ;
 
 lockingPinLength = 3.6;
 lockingPinWidth = 4.5 ;
-lockingPinHeight = 2.5 ;
+lockingPinHeight = 2.4 ;
 
 indexSpringHeight = 3; 
 
@@ -70,7 +70,7 @@ module rearBar () {
 }
 
 module lockingPin () {
-  translate ([centralPlateLength/2-yBarWidth,-lockingPinWidth-0.5,0]) {
+  translate ([centralPlateLength/2-yBarWidth,-lockingPinWidth-0,0]) {
     cube ([lockingPinLength+1,lockingPinWidth,lockingPinHeight]);
   }
 }
